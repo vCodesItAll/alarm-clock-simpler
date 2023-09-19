@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Silly story generator</title>
+
+   <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div>
+
+      <input type = "number" min ="1" max ="12" id="alarmSetting" placeholder="hours" ></input>
+      <input type = "number" min ="0" max ="59" id="alarmSetting" placeholder="minutes"></input>
+    </div>
+    <div>
+      <label for="us">am</label><input id="us" type="radio" name="ukus" value="us" checked>
+      <label for="uk">pm</label><input id="uk" type="radio" name="ukus" value="uk">
+    </div>
+    <div>
+      <button class="randomize">Generate random story</button>
+    </div>
+    <!-- Thanks a lot to Willy Aguirre for his help with the code for this assessment -->
+    <p id="clock">clock</p>
+    
+
+    <script src="script.js"></script>
+  </body>
+</html>
