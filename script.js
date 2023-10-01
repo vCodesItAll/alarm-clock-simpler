@@ -3,24 +3,28 @@ function updateClock() {
     // INITIALIZE currentTIme
     const currentTime = new Date();
     // initialize hours and convert to 12 hour system with remainder operator, if remainder from division by 12 equals 0 then assign 12
-    const hours = String(currentTime.getHours()).padStart(2,"0");
+    let hours = currentTime.getHours();
+    // initialize amOrPm, if military current time is greater or equal to 12 then it is PM, else AM
+    const amOrPm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12 || 12;
     // initialize minutes
     const minutes = String(currentTime.getMinutes()).padStart(2,"0");
     // initialize seconds
     const seconds = String(currentTime.getSeconds()).padStart(2,"0");
-    // initialize amOrPm, if military current time is greater or equal to 12 then it is PM, else AM
-    const amOrPm = currentTime.getHours() >= 12 ? "PM" : "AM";
+
     // show formatted currentTime data in div id clock
     document.getElementById("clock").textContent = `Time: ${hours}:${minutes}:${seconds} ${amOrPm}`;
 }
 
 function setAlarm() {
+    document.getElementById("alarmMessage").textContent = "Alarm set!";
     // initialize alarmHour and convert id alarmHour input to int
-    const alarmHour = parseInt(document.getElementById("alarmHours").value);
+    let alarmHour = parseInt(document.getElementById("alarmHours").value);
     // initialize alarmMinute and convert id alarmMinute input to int
     const alarmMinute = parseInt(document.getElementById("alarmMinutes").value);
     // initialize amPm with am or pm from dropdown id amPm
-    const amPm = document.querySelector('input[name="amPm"]:checked').value;
+    const amPm = document.querySelector('input[name="ampm"]:checked').value;
     
     let alarmHour24 = alarmHour;
     if (amPm === "PM" && alarmHour!== 12) {
@@ -33,18 +37,16 @@ function setAlarm() {
     const currentHour24 = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
 
-    if (
-        alarmHour24 < currentHour24 ||
-        (alarmHour24 === currentHour24 && alarmMinute <= currentMinute)
-    ) {
-        document.getElementById("alarmMessage").textContent = "Alarm time has already passed for today";
-        return;
+    let timeUntilAlarm = (alarmHour24 * 60 + alarmMinute) - (currentHour24 * 60 + currentMinute);
+
+    if (timeUntilAlarm <= 0) {
+        timeUntilAlarm += 24 * 60;
     }
 
-    const timeUntilAlarm = (alarmHour24 - currentHour24) * 60 + (alarmMinutes - currentMinute);
+   
 
     setTimeout(() => {
-        document.getElementById("alarmMessage").textContent = "Alarm! It's time!";
+        alert("IT'S MORBIN TIME!!!!!!!!!!!")
     }, timeUntilAlarm * 60000);
 
     document.getElementById("alarmMessage").textContent = "Alarm set!";
