@@ -9,8 +9,8 @@
   </head>
   <body>
     <div>
-      <input type = "number" min ="1" max ="12" id="alarmSetting" placeholder="Hours" ></input>
-      <input type = "number" min ="0" max ="59" id="alarmSetting" placeholder="Minutes"></input>
+      <input type = "number" min ="1" max ="12" id="alarmHours" placeholder="Hours" >
+      <input type = "number" min ="0" max ="59" id="alarmMinutes" placeholder="Minutes">
     </div>
     <div>
       <label for="am">AM</label><input id="am" type="radio" name="ampm" value="AM" checked>
@@ -19,8 +19,9 @@
     <div>
       <button class="set-alarm">Set Alarm</button>
     </div>
-    <!-- Thanks a lot to Willy Aguirre for his help with the code for this assessment -->
+    
     <p id="clock">Clock</p>
+    <p id="alarmMessage"></p>
     <script src="script.js"></script>
   </body>
 </html>
